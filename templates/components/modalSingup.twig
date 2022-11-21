@@ -1,0 +1,45 @@
+<div class="modal modal-lg" tabindex="-1" id="modalSingup">
+	<form action="/auth/singup" method="post">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Login</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="username" class="form-label">username</label>
+						<input type="text" class="form-control" name="username" placeholder="Masukkan username" id="username">
+					</div>
+					<div class="mb-3">
+						<label for="first_name" class="form-label">first name</label>
+						<input type="text" class="form-control" name="first_name" placeholder="Masukkan username" id="first_name">
+					</div>
+					<div class="mb-3">
+						<label for="last_name" class="form-label">last name</label>
+						<input type="text" class="form-control" name="last_name" placeholder="Masukkan username" id="last_name">
+					</div>
+					<div class="mb-3">
+						<label for="password" class="form-label">password</label>
+						<input type="password" class="form-control" name="password" placeholder="Masukkan username" id="password">
+					</div>
+					<div class="md-3">
+						<label for="gender" class="form-label">Gender</label>
+						<select class="form-select" aria-label="Pilih gender anda" name="gender">
+							<option value="male">
+								Male
+							</option>
+							<option value="female">
+								female
+							</option>
+						</select>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Daftar</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

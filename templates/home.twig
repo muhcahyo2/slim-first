@@ -1,0 +1,33 @@
+{% extends "layouts/master.twig" %}
+
+{% block content %}
+	<div class="container mt-3">
+		<h1 class="text-center display-4">
+			Daftar Users
+		</h1>
+		<table class="table table-hover table-striped table-bordered">
+			<tr>
+				<th class="text-center">No</th>
+				<th>Username</th>
+				<th>Fullname</th>
+				<th>Gender</th>
+			</tr>
+			{% for user in users %}
+				<tr>
+					<td class="text-center">{{loop.index}}</td>
+					<td>{{user.username}}</td>
+					<td>
+						{{ user.first_name }}
+						{{ user.last_name }}
+					</td>
+					<td>{{ user.gender }}</td>
+				</tr>
+			{% else %}
+				<tr class="text-center">
+					User tidak ada
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}
+
