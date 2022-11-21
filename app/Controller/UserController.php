@@ -9,7 +9,7 @@ class UserController extends BaseController
 {
   public function Index(Request $req, Response $res, array $args)
   {
-    $users = $this->c->db->select('user_details', [
+    $users = $this->c->db->select('tbl_users', [
       'user_id', 'username', 'first_name', 'last_name', 'gender'
     ]);
 
@@ -17,13 +17,12 @@ class UserController extends BaseController
       'title' => 'Home',
       'users' => $users,
     ];
-    // dd($users);
 
     return $this->c->view->render($res, 'home.twig', $data);
   }
   public function login(Request $req, Response $res, array $args)
   {
-    $user = $this->c->db->get('user_details', ['username', 'password'], [
+    $user = $this->c->db->get('tbl_users', ['username', 'password'], [
       'username' => $req->getParsedBody()['username']
     ]);
     if ($user) {
@@ -41,11 +40,11 @@ class UserController extends BaseController
   public function register(Request $req, Response $res, array $args)
   {
     $data = $req->getParsedBody();
-    $user = $this->c->db->select('user_details', ['username'], [
+    $user = $this->c->db->select('tbl_users', ['username'], [
       'username' => $data['username']
     ]);
     if (!$user) {
-      $result = $this->c->db->insert('user_details', [
+      $result = $this->c->db->insert('tbl_users', [
         'username' => $data['username'],
         'first_name' => $data['first_name'],
         'last_name' => $data['last_name'],
