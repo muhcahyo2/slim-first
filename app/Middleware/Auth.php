@@ -8,10 +8,17 @@ class Auth
   public function __invoke($req, $res, $next)
   {
     if (!isset($_SESSION['username'])) {
-      dd($_SESSION['username']);
-      return $res->withRedirect('/');
+      return $res->withRedirect('/auth/login');
     }
 
     return $next($req, $res);
+  }
+  public static function isLogined()
+  {
+    $isLogin = false;
+    if (isset($_SESSION['username'])) {
+      $isLogin = true;
+    }
+    return $isLogin;
   }
 }

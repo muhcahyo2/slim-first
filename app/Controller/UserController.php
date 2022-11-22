@@ -20,6 +20,16 @@ class UserController extends BaseController
 
     return $this->c->view->render($res, 'pages/home.twig', $data);
   }
+
+  public function dataUsers(Request $req, Response $res, array $args)
+  {
+    $users = $this->c->db->select('tbl_users', [
+      'user_id', 'username', 'first_name', 'last_name', 'gender'
+    ]);
+
+    return $res->withJson($users);
+  }
+
   public function login(Request $req, Response $res, array $args)
   {
     $user = $this->c->db->get('tbl_users', ['username', 'password'], [
@@ -31,9 +41,11 @@ class UserController extends BaseController
         $_SESSION['username'] = $user['username'];
       } else {
         $this->c->flash->addMessage('errors', 'Password Anda Salah');
+        return $res->withRedirect('/auth/login');
       }
     } else {
       $this->c->flash->addMessage('errors', 'Username belum terdaftar');
+      return $res->withRedirect('/auth/login');
     }
     return $res->withRedirect('/');
   }
@@ -53,12 +65,14 @@ class UserController extends BaseController
       ]);
       if (!$result) {
         $this->c->flash->addMessage('errors', 'gagal daftar ada sesuatu yang errors');
+        return $res->withRedirect('/auth/register');
       } else {
         $_SESSION['username'] = $data['username'];
       }
       // dd($result);
     } else {
       $this->c->flash->addMessage('errors', 'username telah terdaftar');
+      return $res->withRedirect('/auth/register');
     }
     return $res->withRedirect('/');
   }

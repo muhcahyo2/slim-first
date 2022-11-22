@@ -1,0 +1,42 @@
+{% extends "layouts/auth.twig" %}
+{% set title = 'Register' %}
+{% block form %}
+	<form action="/auth/register" method="post">
+		<div class="mb-3">
+			<label for="username" class="form-label">username</label>
+			<input type="text" class="form-control" name="username" placeholder="Masukkan username" id="username" required autofocus>
+		</div>
+		<div class="mb-3">
+			<label for="first_name" class="form-label">first name</label>
+			<input type="text" class="form-control" name="first_name" placeholder="Masukkan username" id="first_name" required>
+		</div>
+		<div class="mb-3">
+			<label for="last_name" class="form-label">last name</label>
+			<input type="text" class="form-control" name="last_name" placeholder="Masukkan username" id="last_name" required>
+		</div>
+		<div class="mb-3">
+			<label for="password" class="form-label">password</label>
+			<input type="password" class="form-control" name="password" placeholder="Masukkan username" id="password" required>
+		</div>
+		<div class="mb-3">
+			<label for="gender" class="form-label">Gender</label>
+			<select class="form-select" aria-label="Pilih gender anda" name="gender">
+				<option value="male">
+					Male
+				</option>
+				<option value="female">
+					female
+				</option>
+			</select>
+		</div>
+		<div class="d-grid">
+			<button type="submit" class="btn text-light main-bg">Register</button>
+		</div>
+		<div class="mb-2">
+			<p class="fs-6">Sudah Punaya Akun?
+				<a href="/auth/login">Login</a>
+			</p>
+		</div>
+	</form>
+
+{% endblock %}

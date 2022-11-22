@@ -12,16 +12,7 @@
 					<a href="#" class="nav-link px-2 text-secondary">Home</a>
 				</li>
 				<li>
-					<a href="#" class="nav-link px-2 text-white">Features</a>
-				</li>
-				<li>
-					<a href="#" class="nav-link px-2 text-white">Pricing</a>
-				</li>
-				<li>
-					<a href="#" class="nav-link px-2 text-white">FAQs</a>
-				</li>
-				<li>
-					<a href="#" class="nav-link px-2 text-white">About</a>
+					<a href="/dashboard" class="nav-link px-2 text-white">Dashboard</a>
 				</li>
 			</ul>
 			{% if session['username'] is defined %}
@@ -32,8 +23,8 @@
 				</div>
 			{% else %}
 				<div class="text-end">
-					<button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</button>
-					<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalSingup">Sign-up</button>
+					<a href="/auth/login" type="button" class="btn btn-outline-light me-2">Login</a>
+					<a href="/auth/register" type="button" class="btn btn-warning me-2">Register</a>
 				</div>
 			{% endif %}
 		</div>

@@ -1,0 +1,23 @@
+{% extends "layouts/auth.twig" %}
+{% set title = 'Login' %}
+{% block form %}
+	<form action="/auth/login" method="post">
+		<div class="mb-4">
+			<label for="username" class="form-label">Username</label>
+			<input type="text" class="form-control" id="username" name="username" autofocus="autofocus"/>
+		</div>
+		<div class="mb-4">
+			<label for="password" class="form-label">Password</label>
+			<input type="password" class="form-control" name="password" id="password"/>
+		</div>
+		<div class="d-grid">
+			<button type="submit" class="btn text-light main-bg">Login</button>
+		</div>
+		<div class="mb-2">
+			<p class="fs-6">Belum Punya Akun?
+				<a href="/auth/register">Register Sekarang</a>
+			</p>
+		</div>
+	</form>
+
+{% endblock %}
