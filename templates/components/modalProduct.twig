@@ -1,0 +1,38 @@
+<div class="modal modal-lg" tabindex="-1" id="modalProduct">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="post" enctype="multipart/form-data">
+				<div class="modal-header">
+					<h5 class="modal-title">Tambah Data</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="name" class="form-label">Nama Product</label>
+						<input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="nama" required>
+					</div>
+					<div class="mb-3">
+						<label for="deskripsi" class="form-label">Deskripsi Product</label>
+						<textarea type="text" class="form-control" id="deskripsi" aria-describedby="emailHelp" name="deskripsi" col="3" required></textarea>
+					</div>
+					<div class="mb-3">
+						<label for="total" class="form-label">Jumlah Product</label>
+						<input type="number" class="form-control" id="total" aria-describedby="emailHelp" name="total" required min=1>
+					</div>
+					<div class="mb-3">
+						<label for="harga" class="form-label">Harga Product</label>
+						<input type="number" class="form-control" id="harga" aria-describedby="emailHelp" name="harga" required>
+					</div>
+					<div class="mb-3">
+						<label for="gambar" class="form-label">Gambar Product</label>
+						<input type="file"  class="form-control" id="gambar" aria-describedby="emailHelp" accept="image/png, image/jpeg" name="gambar" required>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Tambah Data</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

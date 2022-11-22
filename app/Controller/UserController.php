@@ -20,16 +20,6 @@ class UserController extends BaseController
 
     return $this->c->view->render($res, 'pages/home.twig', $data);
   }
-
-  public function dataUsers(Request $req, Response $res, array $args)
-  {
-    $users = $this->c->db->select('tbl_users', [
-      'user_id', 'username', 'first_name', 'last_name', 'gender'
-    ]);
-
-    return $res->withJson($users);
-  }
-
   public function login(Request $req, Response $res, array $args)
   {
     $user = $this->c->db->get('tbl_users', ['username', 'password'], [
@@ -47,7 +37,7 @@ class UserController extends BaseController
       $this->c->flash->addMessage('errors', 'Username belum terdaftar');
       return $res->withRedirect('/auth/login');
     }
-    return $res->withRedirect('/');
+    return $res->withRedirect('/dashboard');
   }
   public function register(Request $req, Response $res, array $args)
   {
@@ -74,6 +64,6 @@ class UserController extends BaseController
       $this->c->flash->addMessage('errors', 'username telah terdaftar');
       return $res->withRedirect('/auth/register');
     }
-    return $res->withRedirect('/');
+    return $res->withRedirect('/dashboard');
   }
 }

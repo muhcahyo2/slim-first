@@ -55,4 +55,6 @@ return function (App $app) {
             'password' => $dbConfig['db_pass'],
         ]);
     };
+    // directory upload files
+    $container['upload_directory'] = getcwd() . '/uploads/img';
 };

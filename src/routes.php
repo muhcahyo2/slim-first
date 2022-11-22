@@ -1,5 +1,6 @@
 <?php
 
+use App\Controller\ProductController;
 use App\Controller\UserController;
 use App\Middleware\Auth;
 use Slim\App;
@@ -24,4 +25,13 @@ return function (App $app) {
       return $response->withRedirect('/auth/login');
     })->add(new Auth());
   });
+  // route group for dashboard
+  $app->group('/dashboard', function ($app){
+    $app->get('/products', ProductController::class . ':toProducts');
+  })->add(new Auth());
+  // route group for api
+  $app->group('/api', function ($app){
+    $app->get('/products', ProductController::class . ':showAll');
+    $app->post('/products', ProductController::class . ':addProduct');
+  })->add(new Auth());
 };
