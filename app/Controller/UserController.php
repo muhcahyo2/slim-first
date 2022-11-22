@@ -18,7 +18,7 @@ class UserController extends BaseController
       'users' => $users,
     ];
 
-    return $this->c->view->render($res, 'home.twig', $data);
+    return $this->c->view->render($res, 'pages/home.twig', $data);
   }
   public function login(Request $req, Response $res, array $args)
   {

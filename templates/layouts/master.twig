@@ -11,11 +11,13 @@
 		<body>
 			{% include "components/header.twig" %}
 			{% if flash('errors') %}
-				<ul class="alert alert-danger">
-					{% for msg in flash('errors') %}
-						<li>{{ msg }}</li>
-					{% endfor %}
-				</ul>
+				<div class="container mt-2">
+					<ul class="alert alert-danger">
+						{% for msg in flash('errors') %}
+							<li>{{ msg }}</li>
+						{% endfor %}
+					</ul>
+				</div>
 			{% endif %}
 			{% block content %}{% endblock %}
 
