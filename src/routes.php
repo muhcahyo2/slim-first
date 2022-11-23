@@ -26,12 +26,14 @@ return function (App $app) {
     })->add(new Auth());
   });
   // route group for dashboard
-  $app->group('/dashboard', function ($app){
+  $app->group('/dashboard', function ($app) {
     $app->get('/products', ProductController::class . ':toProducts');
   })->add(new Auth());
   // route group for api
-  $app->group('/api', function ($app){
+  $app->group('/api', function ($app) {
     $app->get('/products', ProductController::class . ':showAll');
     $app->post('/products', ProductController::class . ':addProduct');
+    $app->get('/products/{id}', ProductController::class . ':show');
+    $app->delete('/products/{id}', ProductController::class . ':destroy');
   })->add(new Auth());
 };
