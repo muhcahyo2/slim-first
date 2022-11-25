@@ -1,5 +1,6 @@
 <?php
 
+use App\Controller\OrderController;
 use App\Controller\ProductController;
 use App\Controller\UserController;
 use App\Middleware\Auth;
@@ -28,12 +29,21 @@ return function (App $app) {
   // route group for dashboard
   $app->group('/dashboard', function ($app) {
     $app->get('/products', ProductController::class . ':toProducts');
+    $app->get('/orders', OrderController::class . ':toOrders');
   })->add(new Auth());
   // route group for api
   $app->group('/api', function ($app) {
+
     $app->get('/products', ProductController::class . ':showAll');
     $app->post('/products', ProductController::class . ':addProduct');
+    $app->get('/products/ready', ProductController::class . ':getProductReady');
     $app->get('/products/{id}', ProductController::class . ':show');
+    $app->put('/products/{id}', ProductController::class . ':update');
     $app->delete('/products/{id}', ProductController::class . ':destroy');
+
+    $app->get('/orders', OrderController::class . ':showAll');
+    $app->post('/orders', OrderController::class . ':addOrder');
+    $app->post('/orders/{id}/done', OrderController::class . ':doneOrder');
+    $app->delete('/orders/{id}', OrderController::class . ':destroy');
   })->add(new Auth());
 };

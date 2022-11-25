@@ -1,4 +1,4 @@
-<div class="modal modal-lg relative fade" tabindex="-1" id="modalAddProduct">
+<div class="modal modal-lg relative fade" tabindex="-1" id="modalAddOrder">
 	<div class="modal-dialog">
 		<div class="overlay rounded d-flex align-items-center justify-content-center d-none" id="dataLoader">
 			<span class="loader"></span>
@@ -6,29 +6,31 @@
 		<div class="modal-content">
 			<form method="post" enctype="multipart/form-data">
 				<div class="modal-header">
-					<h5 class="modal-title">Tambah Product</h5>
+					<h5 class="modal-title">Tambah Order</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 					<div class="mb-3">
-						<label for="name" class="form-label">Nama Product</label>
+						<label for="name" class="form-label">Nama Pengorder</label>
 						<input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="nama" required>
 					</div>
 					<div class="mb-3">
-						<label for="deskripsi" class="form-label">Deskripsi Product</label>
-						<textarea type="text" class="form-control" id="deskripsi" aria-describedby="emailHelp" name="deskripsi" col="3" required></textarea>
+						<label for="name" class="form-label">Pilih Products</label>
+						<select name="product_name" id="product_name" class="form-control">
+							<option value="">pilih products</option>
+						</select>
 					</div>
 					<div class="mb-3">
 						<label for="total" class="form-label">Jumlah Product</label>
 						<input type="number" class="form-control" id="total" aria-describedby="emailHelp" name="total" required min="1">
 					</div>
 					<div class="mb-3">
-						<label for="harga" class="form-label">Harga Product</label>
-						<input type="number" class="form-control" id="harga" aria-describedby="emailHelp" name="harga" required>
+						<label for="harga" class="form-label">Total Harga</label>
+						<input type="text" class="form-control" id="harga" aria-describedby="emailHelp" name="harga" disabled>
 					</div>
-					<div class="mb-3">
-						<label for="gambar" class="form-label">Gambar Product</label>
-						<input type="file" class="form-control" id="gambar" aria-describedby="emailHelp" accept="image/*" name="gambar" required>
+          <div class="mb-3">
+						<label for="alamat" class="form-label">Alamat</label>
+						<textarea type="text" class="form-control" id="alamat" aria-describedby="emailHelp" name="alamat" col="3" required></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">

@@ -2,10 +2,10 @@
 {% block content %}
 	<div class="container mt-3">
 		<h1 class="text-center display-4">
-			Daftar Products
+			Daftar Orders
 		</h1>
 		<div class="d-flex justify-content-between">
-			<a href="#" class="btn btn-primary mb-2 mr-0 w-auto" data-bs-toggle="modal" data-bs-target="#modalAddProduct">Tambah Data</a>
+			<a href="#" class="btn btn-primary mb-2 mr-0 w-auto" data-bs-toggle="modal" data-bs-target="#modalAddOrder">Tambah Data</a>
 			<form action="#" id="searchForm" method="get">
 				<input type="search" name="q" id="#sarch" class="form-control mb-3 w-auto p-2" placeholder="cari products">
 				<input type="submit" value="cari" class="d-none">
@@ -15,26 +15,31 @@
 			<table class="table table-hover table-striped table-bordered table-responsive">
 				<tr class="text-center table-dark">
 					<th class="text-center">No</th>
-					<th>Nama Products</th>
-					<th>Harga</th>
-					<th>Stock Ready</th>
+					<th>Nama Pengorder</th>
+					<th>Total Harga</th>
+					<th>Jumlah Order</th>
+					<th>Nama Product</th>
+					<th>Alamat</th>
+					<th>Tanggal Order</th>
+					<th>Status</th>
 					<th>Aksi</th>
 				</tr>
 				<tr>
-					<td colspan="5" class="text-center" id="loader">
+					<td colspan="8" class="text-center" id="loader">
 						<span class="loader"></span>
 					</td>
 				</tr>
 			</table>
+
 		</div>
 	</div>
 
-	{% include "components/modalAddProduct.twig" %}
-	{% include "components/modalEditProduct.twig" %}
+	{% include "components/modalAddOrder.twig" %}
+	{# {% include "components/modalEditProduct.twig" %} #}
 	{% include "components/modalHapus.twig" %}
 	{% include "components/modalSuccess.twig" %}
 {% endblock %}
 {% block js %}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.4.1/accounting.min.js" integrity="sha512-LW+1GKW2tt4kK180qby6ADJE0txk5/92P70Oh5YbtD7heFlC0qFFtacvSnHG4bNXmLnZq5hNb2V70r5DzS/U+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="/assets/js/product.js"></script>
+	<script src="/assets/js/order.js"></script>
 {% endblock %}

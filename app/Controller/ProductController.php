@@ -14,7 +14,7 @@ class ProductController extends BaseController
    * */
   public function toProducts(Request $req, Response $res, array $args)
   {
-    return $this->c->view->render($res, 'pages/products.twig');
+    return $this->c->view->render($res, 'pages/products.twig', ['title'=>'Daftar Products']);
   }
   /**
    * This function will be return all products
@@ -23,16 +23,21 @@ class ProductController extends BaseController
   {
     $page = $req->getParam('page') ?? 1;
     $perpage = $req->getParam('per_page') ?? 2;
+    $query = $req->getParam('q') ?? '';
     $offset = ($page - 1) * $perpage;
-
+    $conditions =  [
+      'nama[~]' => $query,
+      'LIMIT' => [
+        $offset, $perpage
+      ],
+      'ORDER' => [
+        'id_product' => 'DESC'
+      ]
+    ];
     $products = $this->c->db->select('tbl_products', [
       'id_product', 'nama',
       'total', 'harga'
-    ], ['LIMIT' => [
-      $offset, $perpage
-    ], 'ORDER' => [
-      'id_product' => 'DESC'
-    ]]);
+    ],$conditions);
 
     $count = $this->c->db->count('tbl_products');
 
@@ -82,13 +87,26 @@ class ProductController extends BaseController
     }
   }
 
+  public function update(Request $req, Response $res, array $args)
+  {
+    $product = $this->c->db->get('tbl_products', ['id_product'], ['id_product' => (int)$args['id']]);
+    if (!$product) {
+      die('data tidak ada');
+    }
+
+    $result = $this->c->db->update('tbl_products', $req->getParsedBody(), ['id_product' => $args['id']]);
+    if (!$result) {
+      die('gagal');
+    }
+    return $res->withJson(array('msg' => 'succes ubah data'));
+  }
   /**
    * This Function will upload file to /uploads dir 
    * */
-  function moveUploadedFile($directory, UploadedFile $uploadedFile)
+  public function moveUploadedFile($directory, UploadedFile $uploadedFile)
   {
     $oriname = $uploadedFile->getClientFilename();
-    $basename = bin2hex(random_bytes(8)); // see http://php.net/manual/en/function.random-bytes.php
+    // $basename = bin2hex(random_bytes(8)); // see http://php.net/manual/en/function.random-bytes.php
     $filename = Date('YmdHis') . '-'  . $oriname;
 
     $uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
@@ -97,7 +115,7 @@ class ProductController extends BaseController
   }
   /**
    * this function will delete data when id_product = @param id
-   * */ 
+   * */
   public function destroy(Request $req, Response $res, array $args)
   {
     $id = $args['id'];
@@ -110,5 +128,13 @@ class ProductController extends BaseController
     return $res->withJson([
       'msg' => 'berhasil menghapus products dengan id' .  $id
     ]);
+  }
+  /**
+   * will be return json list product ready
+   * */ 
+  public function getProductReady(Request $req, Response $res, array $args)
+  {
+    $product = $this->c->db->select('tbl_products', ['id_product','nama','total','harga'],['total[>]'=> 0]);
+    return $res->withJson($product);
   }
 }

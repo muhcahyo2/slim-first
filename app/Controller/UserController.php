@@ -37,7 +37,7 @@ class UserController extends BaseController
       $this->c->flash->addMessage('errors', 'Username belum terdaftar');
       return $res->withRedirect('/auth/login');
     }
-    return $res->withRedirect('/dashboard');
+    return $res->withRedirect('/dashboard/products');
   }
   public function register(Request $req, Response $res, array $args)
   {
@@ -64,6 +64,6 @@ class UserController extends BaseController
       $this->c->flash->addMessage('errors', 'username telah terdaftar');
       return $res->withRedirect('/auth/register');
     }
-    return $res->withRedirect('/dashboard');
+    return $res->withRedirect('/dashboard/products');
   }
 }

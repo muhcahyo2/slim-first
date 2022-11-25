@@ -8,17 +8,20 @@
 			</a>
 
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+				{# <li>
+					<a href="/dashboard" class="nav-link px-2 text-white">Dashboard</a>
+				</li> #}
 				<li>
-					<a href="#" class="nav-link px-2 text-secondary">Home</a>
+					<a href="/dashboard/products" class="nav-link px-2 text-white">Products</a>
 				</li>
 				<li>
-					<a href="/dashboard" class="nav-link px-2 text-white">Dashboard</a>
+					<a href="/dashboard/orders" class="nav-link px-2 text-white">Orders</a>
 				</li>
 			</ul>
 			{% if session['username'] is defined %}
 				<div class="text-end">
 					<form action="/auth/logout" method="post">
-						<button type="submit" class="btn btn-warning">Logout</button>
+						<button type="submit" id="logout_btn" class="btn btn-warning">Logout</button>
 					</form>
 				</div>
 			{% endif %}
